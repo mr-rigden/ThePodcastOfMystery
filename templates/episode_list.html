@@ -1,0 +1,8 @@
+<ul class="plain-list">
+    {% for episode in episodes %}
+    <li>
+      <a href="{{episode.url}}">{{episode.header.title}}</a>
+      <div class="subheading">{{episode.header.date_str}}</div>
+    </li>
+    {% endfor %}
+  </ul>

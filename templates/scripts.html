@@ -1,0 +1,64 @@
+<script src="{{base_url}}/share/libs/fitty/2.3.3/fitty.min.js"></script>
+<script src="{{base_url}}/share/libs/smarquee/smarquee.min.js"></script>
+<script>
+    var minFontSize = 12;
+    fitty(".fit", {
+      minSize: 10,
+    });
+
+    var playIcon = "<i class='bi-play-fill'></i>";
+    var pauseIcon = "<i class='bi-pause-fill'></i>";
+
+    var radioPlayer = document.getElementById("radio-player");
+    var radioOn = false;
+
+    var playPauseButton = document.getElementById("play-button");
+    playPauseButton.addEventListener("click", toggleRadio);
+
+    function toggleRadio() {
+      if (radioOn) {
+        radioPlayer.pause();
+        radioOn = false;
+        playPauseButton.innerHTML = playIcon;
+        playPauseButton.classList.toggle("invert-button");
+      } else {
+        radioPlayer.play();
+        radioOn = true;
+        playPauseButton.innerHTML = pauseIcon;
+        playPauseButton.classList.toggle("invert-button");
+      }
+    }
+
+    let smarquee = new Smarquee({
+      selector: "#current-track",
+      pausePercent: 1,
+      scrollingTitleMargin: 18,
+    }); // or new Smarquee({ OPTIONS });
+    smarquee.init();
+
+    function updateCurrentTrack() {
+      var url = "https://icecast.weirdfm.net/status-json.xsl";
+      var request = new XMLHttpRequest();
+      request.open("GET", url, true);
+
+      request.onload = function () {
+        if (request.status >= 200 && request.status < 400) {
+          // Success!
+          var data = JSON.parse(request.responseText);
+          console.log(data["icestats"]["source"]["title"]);
+          var trackName =
+            data["icestats"]["source"]["title"] + " - The Podcast of Mystery";
+          smarquee.updateText(trackName);
+
+          smarquee.restart();
+          //smarquee.updateText = data["icestats"]["source"]["title"];
+        } else {
+        }
+      };
+      request.send();
+    }
+    updateCurrentTrack();
+    const interval = setInterval(function () {
+      updateCurrentTrack();
+    }, 60000);
+  </script>

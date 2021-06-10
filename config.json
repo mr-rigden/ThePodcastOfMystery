@@ -1,0 +1,18 @@
+{
+    "base_url": "http://192.168.0.112:35729",
+    "content_dir": "/home/jason/Dev/POM-generator/content",
+    "output_dir": "/home/jason/Dev/POM-generator/output", 
+    "site_title": "Test Monkey",
+    "site_desc": "Bla bla bla bla",
+    "home_page_img": "",
+    "home_page_links" : [
+        {
+            "name": "",
+            "url": ""
+        },
+        {
+            "name": "",
+            "url": ""
+        }
+    ]
+}

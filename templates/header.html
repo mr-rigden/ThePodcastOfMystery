@@ -1,0 +1,17 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    {% if page.header.date %}
+        <title>{{page.header.title}} - {{page.header.date_str}}</title>
+    {% else %}
+        <title>{{page.header.title}}</title>
+    {% endif %}
+
+    <link href="/share/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet"/>
+    <link href="/share/font/urbanist/stylesheet.css" rel="stylesheet" />
+    <link href="/share/libs/bootstrap-icons/1.5.0/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👽</text></svg>" />
+
+    <meta name="description" content="Page description" />
+    <link rel="canonical" href="https://www.mywebsite.com/page" />
+</head>

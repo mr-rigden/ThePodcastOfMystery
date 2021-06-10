@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'header.html' %}
+    {% include 'styles.html' %}
+    {% include 'nav.html' %}
+    <main>
+    {% if page.header.date %}
+        <h1>{{page.header.title}}</h1>
+        <div class="subheading">{{page.header.date_str}}</div>
+
+    {% elif page.homepage %}
+    {% else %}
+    <div>
+        <h1 class="fit">{{page.header.title}}</h1>
+    </div>
+    {% endif %}
+    {{page.body}}
+    {% if page.header.date %}
+        {% if page.related|length > 0 %}
+            <h3>Related Episodes</h3>
+            <ul>
+            {% for related  in page.related %}
+                <li>
+                    <a href="{{related.url}}">{{related.title}}</a>
+                </li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endif %}
+
+    {% if page.header.date %}
+    <div style="height: 20rem;"></div>
+
+    {% endif %}
+
+    
+    {% if page.homepage %}
+        {% include 'home.html' %}
+    {% endif %} 
+
+    
+
+    {% include 'tail.html' %}
+    </main>
+    {% include 'footer.html' %}
+    {% include 'scripts.html' %}
+</html>
+
